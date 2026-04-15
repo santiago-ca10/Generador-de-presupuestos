@@ -1,0 +1,8 @@
+{
+  "title": "Budget Generator",
+  "proyecto": "Project",
+  "horas": "Hours",
+  "valor_hora": "Hourly Rate",
+  "termino": "Duration",
+  "generar": "Generate PDF"
+}

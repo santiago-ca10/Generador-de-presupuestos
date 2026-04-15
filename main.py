@@ -1,4 +1,10 @@
-from app.gui.app import run
+import customtkinter as ctk
+from app.core.config import load_config
+from app.gui.main_window import MainWindow
 
-if __name__ == "__main__":
-    run()
+config = load_config()
+
+ctk.set_appearance_mode(config["theme"])
+
+app = MainWindow()
+app.mainloop()

@@ -1,6 +1,6 @@
 # Generador de Presupuestos
 
-Aplicación de escritorio desarrollada en Python que permite generar presupuestos en formato PDF de manera rápida y sencilla mediante una interfaz gráfica.
+Aplicación de escritorio desarrollada en Python que permite generar presupuestos en formato PDF de manera rápida y sencilla mediante una interfaz gráfica moderna.
 
 ---
 
@@ -10,7 +10,7 @@ Muchos profesionales y freelancers necesitan crear presupuestos de forma rápida
 
 - Usan herramientas manuales (Word, Excel)
 - Pierden tiempo formateando documentos
-- No tienen una solución automatizada simple
+- No tienen una solución rápida y reutilizable
 
 ---
 
@@ -22,17 +22,18 @@ Esta aplicación permite:
 - Generar automáticamente un PDF profesional
 - Elegir dónde guardar el archivo desde el sistema
 
-Todo desde una interfaz gráfica simple y directa.
+Todo desde una aplicación de escritorio intuitiva.
 
 ---
 
 ## 🖥️ Características
 
-- Interfaz gráfica con Tkinter
+- Interfaz gráfica con CustomTkinter
 - Generación automática de PDF
 - Selector de ruta para guardar archivo
 - Cálculo automático del costo total
 - Validación básica de datos
+- Arquitectura modular (core / gui / i18n)
 
 ---
 
@@ -42,14 +43,24 @@ Todo desde una interfaz gráfica simple y directa.
 📁 generador_presupuestos
 ├── 📁 app
 │ ├── 📁 core
+│ │ ├── config.py
 │ │ ├── models.py
 │ │ └── pdf_service.py
 │ │
-│ └── 📁 gui
-│ └── app.py
+│ ├── 📁 gui
+│ │ ├── app.py
+│ │ ├── main_window.py
+│ │ └── settings_window.py
+│ │
+│ ├── 📁 i18n
+│ │ ├── en.json
+│ │ └── es.json
+│ │
+│ └── init.py
 │
 ├── main.py
 ├── requirements.txt
+├── .gitignore
 └── README.md
 ```
 
@@ -58,10 +69,10 @@ Todo desde una interfaz gráfica simple y directa.
 ## ⚙️ Instalación
 
 ```bash
-git clone https://github.com/tu-usuario/generador_presupuestos.git
+git clone https://github.com/santiago-ca10/Generador-de-presupuestos.git
 ```
 ```bash
-cd generador_presupuestos
+cd Generador-de-presupuestos
 ```
 
 ```bash
@@ -80,11 +91,17 @@ python main.py
 ### Tecnologías utilizadas
 Python
 
-Tkinter
+CustomTkinter
 
 fpdf2
 
 ## 📌 Estado del proyecto
 
 En desarrollo 🚧
-Se planean mejoras en la interfaz y funcionalidades.
+
+- Próximas mejoras:
+- Diseño de interfaz más avanzado
+- Plantillas de presupuesto
+- Inclusión de datos de cliente
+- Exportación en otros formatos
+- Generación de ejecutable (.exe)

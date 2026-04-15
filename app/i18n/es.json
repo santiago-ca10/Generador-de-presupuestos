@@ -1,0 +1,8 @@
+{
+  "title": "Generador de Presupuestos",
+  "proyecto": "Proyecto",
+  "horas": "Horas",
+  "valor_hora": "Valor por hora",
+  "termino": "Duración",
+  "generar": "Generar PDF"
+}
