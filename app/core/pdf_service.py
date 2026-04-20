@@ -1,5 +1,4 @@
 from fpdf import FPDF
-from datetime import datetime
 
 class PDFService:
     def generar(self, p, ruta):
@@ -7,47 +6,47 @@ class PDFService:
         pdf.add_page()
 
         # HEADER
-        pdf.set_font("Arial", "B", 20)
-        pdf.cell(0, 10, "PRESUPUESTO", ln=True, align="C")
+        pdf.set_font("Arial", "B", 16)
+        pdf.cell(0, 10, f"Presupuesto #{p.id}", ln=True)
+        pdf.set_font("Arial", size=11)
+        pdf.cell(0, 8, f"Fecha: {p.fecha}", ln=True)
 
         pdf.ln(5)
 
-        # Línea
-        pdf.set_draw_color(100, 100, 100)
-        pdf.line(10, 25, 200, 25)
-
-        pdf.ln(10)
-
-        # INFO PROYECTO
+        # CLIENTE
         pdf.set_font("Arial", "B", 12)
-        pdf.cell(0, 10, "DETALLES DEL PROYECTO", ln=True)
+        pdf.cell(0, 8, "Cliente", ln=True)
 
         pdf.set_font("Arial", size=11)
-        pdf.cell(0, 8, f"Proyecto: {p.proyecto}", ln=True)
-        pdf.cell(0, 8, f"Horas estimadas: {p.horas}", ln=True)
+        pdf.cell(0, 8, f"Nombre: {p.cliente_nombre}", ln=True)
+        pdf.cell(0, 8, f"Empresa: {p.cliente_empresa}", ln=True)
+        pdf.cell(0, 8, f"Email: {p.cliente_email}", ln=True)
 
         pdf.ln(5)
 
-        # TABLA (🔥 esto lo hace ver PRO)
-        pdf.set_font("Arial", "B", 11)
-
-        pdf.cell(80, 8, "Concepto", border=1)
-        pdf.cell(40, 8, "Cantidad", border=1)
-        pdf.cell(70, 8, "Valor", border=1, ln=True)
+        # PROYECTO
+        pdf.set_font("Arial", "B", 12)
+        pdf.cell(0, 8, "Proyecto", ln=True)
 
         pdf.set_font("Arial", size=11)
-
-        pdf.cell(80, 8, "Horas de trabajo", border=1)
-        pdf.cell(40, 8, str(p.horas), border=1)
-        pdf.cell(70, 8, f"${p.valor_hora:,}", border=1, ln=True)
+        pdf.cell(0, 8, f"Nombre: {p.proyecto}", ln=True)
+        pdf.cell(0, 8, f"Horas: {p.horas}", ln=True)
+        pdf.cell(0, 8, f"Valor por hora: ${p.valor_hora:,.0f}", ln=True)
+        pdf.cell(0, 8, f"Duración: {p.termino} meses", ln=True)
 
         pdf.ln(5)
 
-        # TOTAL
-        pdf.set_font("Arial", "B", 14)
-        pdf.cell(0, 10, f"TOTAL: ${p.total:,}", ln=True, align="R")
-        
-        pdf.cell(0, 8, f"Fecha: {datetime.now().strftime('%d/%m/%Y')}", ln=True)
-        #pdf.cell(0, 8, f"Empresa: {config['company']}", ln=True)
+        # DESCRIPCIÓN
+        pdf.cell(0, 8, f"Descripción: {p.descripcion}", ln=True)
+
+        pdf.ln(5)
+
+        # TOTALES
+        pdf.set_font("Arial", size=11)
+        pdf.cell(0, 8, f"Subtotal: ${p.subtotal:,.0f}", ln=True)
+        pdf.cell(0, 8, f"IVA (19%): ${p.iva:,.0f}", ln=True)
+
+        pdf.set_font("Arial", "B", 12)
+        pdf.cell(0, 10, f"TOTAL: ${p.total:,.0f}", ln=True)
 
         pdf.output(ruta)
